@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inforad</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/screens/clock.css">
+</head>
+<body>
+
+  <div id="time"></div>
+
+  <script type="text/javascript">
+    var el = document.getElementById('time');
+    setInterval(function () {
+      var date = new Date();
+      var hour = date.getHours();
+      hour = hour > 12 ? hour - 12 : hour;
+      hour = hour == 0 ? 12 : hour;
+      var min = date.getMinutes();
+      min = min < 10 ? '0' + min : min;
+      var sec = date.getSeconds();
+      sec = sec < 10 ? '0' + sec : sec;
+      el.innerText = [hour, ':', min, ':', sec].join('');
+    }, 333);
+  </script>
+
+</body>
+</html>

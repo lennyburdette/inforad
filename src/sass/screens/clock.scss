@@ -1,0 +1,22 @@
+@import '../sq_market';
+@import 'compass';
+
+body {
+  font-family: SQMarket, "Helvetica Neue";
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #45484d; // Old browsers
+  @include filter-gradient(#45484d, #000000, vertical); // IE6-9
+  @include background-image(linear-gradient(top, #45484d 0%,#000000 100%));
+
+  margin: 0;
+  position: absolute;
+  width: 1080px;
+  height: 1920px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#time {
+  font-size: 124px;
+}

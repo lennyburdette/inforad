@@ -1,0 +1,7 @@
+.DS_Store
+.sass-cache
+.vagrant
+node_modules
+public/stylesheets/*
+public/javascript/*
+src/js/vendor/*
