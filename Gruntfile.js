@@ -23,6 +23,7 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: [
+          'src/js/vendor/ractive/build/Ractive.js',
           'src/js/app.js'
         ],
         dest: 'public/javascript/app.min.js'

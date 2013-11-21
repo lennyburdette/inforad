@@ -3,10 +3,10 @@
 
 body {
   font-family: SQMarket, "Avenir", sans-serif;
-  color: rgba(255, 255, 255, 0.8);
-  background-color: #45484d; // Old browsers
-  @include filter-gradient(#45484d, #000000, vertical); // IE6-9
-  @include background-image(linear-gradient(top, #45484d 0%,#000000 100%));
+  color: rgba(32, 32, 32, 0.8);
+  background-color: #a9e4f7; // Old browsers
+  @include filter-gradient(#a9e4f7, #0fb4e7, vertical); // IE6-9
+  @include background-image(linear-gradient(top, #a9e4f7 0%,#0fb4e7 100%));
 
   margin: 0;
   position: absolute;
@@ -17,7 +17,7 @@ body {
   justify-content: center;
 }
 
-#time {
+#date {
   font-size: 124px;
   kerning: auto;
   text-rendering: optimizeLegibility;

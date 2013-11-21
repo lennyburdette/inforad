@@ -1,12 +1,13 @@
 {
-  "name": "beats",
+  "name": "inforads",
   "version": "0.0.0",
-  "description": "weekend hack!",
+  "description": "hackweek",
   "main": "server.js",
   "dependencies": {
     "express": "~3.4.0",
     "socket.io": "~0.9.16",
-    "ejs": "~0.8.4"
+    "ejs": "~0.8.4",
+    "underscore": "~1.5.2"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

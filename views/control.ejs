@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inforad Controller</title>
+  <style type="text/css">
+    body {
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div id="clients"></div>
+
+  <script type="text/x-ractive" id="tmplClients">
+  <ul>
+  {{#clients}}
+    <li>
+      {{name}}
+      <select value="{{screen}}" on-change="changeClient">
+        {{#options:key}}
+          <option value="{{key}}">{{key}}</option>
+        {{/options}}
+      </select>
+    </li>
+  {{/clients}}
+  </ul>
+  </script>
+
+  <script type="text/javascript">
+  var controller = true;
+  <% if (clients) { %>var clients = <%- JSON.stringify(clients) %><% } %>
+  </script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/javascript/app.min.js"></script>
+</body>
+</html>

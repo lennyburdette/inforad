@@ -1,0 +1,6 @@
+git checkout release
+git rebase master
+grunt build
+git add .
+git commit -m "build and release"
+git push origin

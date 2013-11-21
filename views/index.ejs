@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Inforad</title>
+  <title>Inforad <% if (host) { %><%= host %><% } %></title>
   <style type="text/css">
     body {
       margin: 0;
@@ -11,10 +11,17 @@
       position: absolute;
       width: 1080px;
       height: 1920px;
+      overflow: hidden;
     }
   </style>
 </head>
 <body>
-  <iframe src="/info/clock" id="frame"></iframe>
+  <iframe src="/info/clock" id="frame" scrolling="no"></iframe>
+
+  <script type="text/javascript">
+  <% if (host) { %>var host = '<%= host %>';<% } %>
+  </script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/javascript/app.min.js"></script>
 </body>
 </html>

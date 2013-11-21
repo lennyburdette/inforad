@@ -4,5 +4,6 @@
   "main": "server.js",
   "license": "MIT",
   "dependencies": {
+    "ractive": "~0.3.7"
   }
 }
