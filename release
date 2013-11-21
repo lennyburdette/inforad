@@ -1,3 +1,4 @@
+grunt clean
 git checkout release
 git rebase master
 grunt build

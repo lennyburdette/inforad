@@ -59,6 +59,11 @@ module.exports = function(grunt) {
         files: ['src/js/**/*'],
         tasks: ['concat']
       }
+    },
+    clean: {
+      build: {
+        src: ["public/stylesheets/*", "public/javascript/*"]
+      }
     }
   });
 
@@ -68,6 +73,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('default', ['compass', 'concat', 'develop', 'watch']);
   grunt.registerTask('build', ['compass', 'cssmin', 'concat', 'uglify']);
