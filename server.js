@@ -38,10 +38,12 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('subscribe', function () {
-    console.log('controller subscribed');
     socket.on('clientChange', function (data) {
-      console.log('change?', data);
       clients[data.client].emit('change', data);
+    });
+
+    socket.on('allClientChange', function (data) {
+      socket.broadcast.emit('change', data);
     });
   });
 

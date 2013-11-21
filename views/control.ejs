@@ -24,6 +24,14 @@
     </li>
   {{/clients}}
   </ul>
+
+  <p>Change all:</p>
+  <select value="{{currentScreen}}">
+    {{#options:key}}
+      <option value="{{key}}">{{key}}</option>
+    {{/options}}
+  </select>
+  <button on-click="changeAllClients">Set</button>
   </script>
 
   <script type="text/javascript">

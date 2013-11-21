@@ -1,7 +1,7 @@
 var socket = io.connect();
 
 var options = {
-  default: '/info/clock',
+  'default': '/info/clock',
   date: '/info/date'
 };
 
@@ -24,15 +24,16 @@ if ('host' in window) {
   });
 
   var clientsUI = new Ractive({
-    el: document.getElementById("clients"),
-    template: document.getElementById("tmplClients").innerHTML,
+    el: document.getElementById('clients'),
+    template: document.getElementById('tmplClients').innerHTML,
     data: {
       clients: allClients,
-      options: options
+      options: options,
+      currentScreen: null
     }
   });
 
-  clientsUI.on("changeClient", function (event) {
+  clientsUI.on('changeClient', function (event) {
     setTimeout(function () {
       console.log('change client', event.context.name, 'to', event.context.screen);
       socket.emit('clientChange', {
@@ -40,6 +41,14 @@ if ('host' in window) {
         screen: event.context.screen
       });
     }, 0);
+  });
+
+  clientsUI.on('changeAllClients', function (event) {
+    console.log('change all clients to', clientsUI.get('currentScreen'));
+    clientsUI.get('clients').forEach(function (client, i) {
+      clientsUI.set('clients.' + i + '.screen', clientsUI.get('currentScreen'));
+    });
+    socket.emit('allClientChange', { screen: clientsUI.get('currentScreen') });
   });
 
   socket.on('clientDisconnected', function (clientName) {
