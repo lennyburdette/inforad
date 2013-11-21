@@ -1,0 +1,77 @@
+@font-face {
+  font-family: "SQMarket";
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-light.eot");
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-light.eot?#iefix") format("eot"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-light.woff") format("woff"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-light.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal; }
+
+@font-face {
+  font-family: "SQMarket";
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-regular.eot");
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-regular.eot?#iefix") format("eot"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-regular.woff") format("woff"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-regular.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal; }
+
+@font-face {
+  font-family: "SQMarket";
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-medium.eot");
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-medium.eot?#iefix") format("eot"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-medium.woff") format("woff"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-medium.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal; }
+
+@font-face {
+  font-family: "SQMarket";
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-bold.eot");
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-bold.eot?#iefix") format("eot"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-bold.woff") format("woff"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-bold.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: "SQMarket";
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-lightitalic.eot");
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-lightitalic.eot?#iefix") format("eot"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-lightitalic.woff") format("woff"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-lightitalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic; }
+
+@font-face {
+  font-family: "SQMarket";
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-regularitalic.eot");
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-regularitalic.eot?#iefix") format("eot"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-regularitalic.woff") format("woff"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-regularitalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic; }
+
+@font-face {
+  font-family: "SQMarket";
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-mediumitalic.eot");
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-mediumitalic.eot?#iefix") format("eot"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-mediumitalic.woff") format("woff"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-mediumitalic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic; }
+
+@font-face {
+  font-family: "SQMarket";
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-bolditalic.eot");
+  src: url("https://squareup.com/public-fonts/sqmarket/sqmarket-bolditalic.eot?#iefix") format("eot"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-bolditalic.woff") format("woff"), url("https://squareup.com/public-fonts/sqmarket/sqmarket-bolditalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic; }
+
+body {
+  font-family: SQMarket, "Helvetica Neue";
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #45484d;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF45484D', endColorstr='#FF000000');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #45484d), color-stop(100%, #000000));
+  background-image: -webkit-linear-gradient(top, #45484d 0%, #000000 100%);
+  background-image: -moz-linear-gradient(top, #45484d 0%, #000000 100%);
+  background-image: -o-linear-gradient(top, #45484d 0%, #000000 100%);
+  background-image: linear-gradient(top, #45484d 0%, #000000 100%);
+  margin: 0;
+  position: absolute;
+  width: 1080px;
+  height: 1920px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+#time {
+  font-size: 124px; }
