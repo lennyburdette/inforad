@@ -14,7 +14,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/info/:screen', function (req, res) {
-  res.render('screens/' + req.param('screen'));
+  res.render('screens/' + req.param('screen'), { query: req.query });
 });
 
 app.get('/control', function (req, res) {
@@ -45,6 +45,33 @@ io.sockets.on('connection', function (socket) {
     socket.on('allClientChange', function (data) {
       socket.broadcast.emit('change', data);
     });
+
+    socket.on('sendScript', function (data) {
+      socket.broadcast.emit('scriptChange', {
+        script: [{
+          time: todaySeconds(),
+          type: 'image',
+          file: '/media/SlideTests_01-01.jpg'
+        }, {
+          time: todaySeconds() + 5,
+          type: 'image',
+          file: '/media/SlideTests_01-02.jpg'
+        }, {
+          time: todaySeconds() + 10,
+          type: 'movie',
+          file: '/media/HourglassLoop_Slow.mov'
+        }, {
+          time: todaySeconds() + 15,
+          type: 'movie',
+          file: '/media/10minutes.mov'
+        }]
+      });
+    });
   });
 
 });
+
+function todaySeconds () {
+  var date = new Date();
+  return (date.getUTCHours() * 60 * 60) + (date.getUTCMinutes() * 60) + date.getUTCSeconds();
+}

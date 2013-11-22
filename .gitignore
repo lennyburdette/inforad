@@ -5,3 +5,4 @@ node_modules
 public/stylesheets/*
 public/javascript/*
 src/js/vendor/*
+public/media/*
