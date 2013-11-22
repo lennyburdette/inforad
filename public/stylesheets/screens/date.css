@@ -56,22 +56,28 @@
 
 body {
   font-family: SQMarket, "Avenir", sans-serif;
-  color: rgba(255, 255, 255, 0.8);
-  background-color: #45484d;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: #a9e4f7;
   *zoom: 1;
-  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF45484D', endColorstr='#FF000000');
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #45484d), color-stop(100%, #000000));
-  background-image: -webkit-linear-gradient(top, #45484d 0%, #000000 100%);
-  background-image: -moz-linear-gradient(top, #45484d 0%, #000000 100%);
-  background-image: -o-linear-gradient(top, #45484d 0%, #000000 100%);
-  background-image: linear-gradient(top, #45484d 0%, #000000 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFA9E4F7', endColorstr='#FF0FB4E7');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a9e4f7), color-stop(100%, #0fb4e7));
+  background-image: -webkit-linear-gradient(top, #a9e4f7 0%, #0fb4e7 100%);
+  background-image: -moz-linear-gradient(top, #a9e4f7 0%, #0fb4e7 100%);
+  background-image: -o-linear-gradient(top, #a9e4f7 0%, #0fb4e7 100%);
+  background-image: linear-gradient(top, #a9e4f7 0%, #0fb4e7 100%);
   margin: 0;
   position: absolute;
   width: 1080px;
-  height: 1920px; }
+  height: 1920px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
 
-.chart {
+#date {
+  font-size: 128px;
+  kerning: auto;
+  text-rendering: optimizeLegibility;
   position: absolute;
+  text-align: center;
   top: 50%;
-  left: 50%;
-  margin: -400px 0 0 -400px; }
+  margin: -64px auto 0; }
