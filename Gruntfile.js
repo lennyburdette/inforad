@@ -18,6 +18,15 @@ module.exports = function(grunt) {
           environment: 'production',
           outputStyle: 'nested'
         }
+      },
+      build: {
+        options: {
+          sassDir: 'src/sass',
+          cssDir: 'public/stylesheets',
+          environment: 'production',
+          outputStyle: 'nested',
+          force: true
+        }
       }
     },
     concat: {
@@ -90,6 +99,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('default', ['compass', 'concat', 'develop', 'watch']);
-  grunt.registerTask('build', ['compass', 'concat', 'uglify']);
+  grunt.registerTask('build', ['compass:build', 'cssmin', 'concat', 'uglify']);
 
 };
