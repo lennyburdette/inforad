@@ -11,104 +11,106 @@
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <script type="text/javascript">
   // http://www.ericbullington.com/static/download/clock.js
-  (function() {
-    var clockGroup, fields, height, offSetX, offSetY, pi, render, scaleHours, scaleMins, scaleSecs, vis, width;
+  var clockGroup, fields, height, offSetX, offSetY, pi, render, scaleHours, scaleMins, scaleSecs, vis, width;
 
-    fields = function() {
-      var currentTime, data, hour, minute, second;
-      currentTime = new Date();
-      second = currentTime.getSeconds();
-      minute = currentTime.getMinutes();
-      hour = currentTime.getHours() + minute / 60;
-      return data = [
-        {
-          "unit": "seconds",
-          "numeric": second
-        }, {
-          "unit": "minutes",
-          "numeric": minute
-        }, {
-          "unit": "hours",
-          "numeric": hour
-        }
-      ];
-    };
+  fields = function() {
+    var currentTime, data, hour, minute, second, millis;
+    currentTime = new Date();
+    millis = currentTime.getMilliseconds() / 1000;
+    second = currentTime.getSeconds();
+    minute = currentTime.getMinutes();
+    hour = currentTime.getHours() + minute / 60;
+    return data = [
+      {
+        "unit": "seconds",
+        "numeric": second + millis
+      }, {
+        "unit": "minutes",
+        "numeric": minute
+      }, {
+        "unit": "hours",
+        "numeric": hour
+      }
+    ];
+  };
 
-    width = 800;
+  width = 800;
 
-    height = 800;
+  height = 800;
 
-    offSetX = 400;
+  offSetX = 400;
 
-    offSetY = 400;
+  offSetY = 400;
 
-    pi = Math.PI;
+  pi = Math.PI;
 
-    scaleSecs = d3.scale.linear().domain([1, 60 + 999 / 1000]).range([0, 2 * pi]);
+  scaleSecs = d3.scale.linear().domain([1, 60 + 999 / 1000]).range([0, 2 * pi]);
 
-    scaleMins = d3.scale.linear().domain([0, 59 + 59 / 60]).range([0, 2 * pi]);
+  scaleMins = d3.scale.linear().domain([0, 59 + 59 / 60]).range([0, 2 * pi]);
 
-    scaleHours = d3.scale.linear().domain([0, 11 + 59 / 60]).range([0, 2 * pi]);
+  scaleHours = d3.scale.linear().domain([0, 11 + 59 / 60]).range([0, 2 * pi]);
 
-    vis = d3.selectAll(".chart").append("svg:svg").attr("width", width).attr("height", height);
+  vis = d3.selectAll(".chart").append("svg:svg").attr("width", width).attr("height", height);
 
-    clockGroup = vis.append("svg:g").attr("transform", "translate(" + offSetX + "," + offSetY + ")");
+  clockGroup = vis.append("svg:g").attr("transform", "translate(" + offSetX + "," + offSetY + ")");
 
-    clockGroup.append("svg:circle")
-      .attr("r", width * 0.45)
-      .attr("fill", "none")
-      .attr("class", "clock outercircle")
-      .attr("stroke", "white")
-      .attr("stroke-width", 10);
+  clockGroup.append("svg:circle")
+    .attr("r", width * 0.45)
+    .attr("fill", "none")
+    .attr("class", "clock outercircle")
+    .attr("stroke", "white")
+    .attr("stroke-width", 10);
 
-    clockGroup.append("svg:circle")
-      .attr("r", 10)
-      .attr("fill", "white")
-      .attr("class", "clock innercircle");
+  clockGroup.append("svg:circle")
+    .attr("r", 10)
+    .attr("fill", "white")
+    .attr("class", "clock innercircle");
 
-    render = function(data) {
-      var hourArc, minuteArc, secondArc;
-      clockGroup.selectAll(".clockhand").remove();
-      secondArc = d3.svg.arc().innerRadius(0).outerRadius(width * 0.42).startAngle(function(d) {
-        return scaleSecs(d.numeric);
-      }).endAngle(function(d) {
-        return scaleSecs(d.numeric);
-      });
-      minuteArc = d3.svg.arc().innerRadius(0).outerRadius(width * 0.42).startAngle(function(d) {
-        return scaleMins(d.numeric);
-      }).endAngle(function(d) {
-        return scaleMins(d.numeric);
-      });
-      hourArc = d3.svg.arc().innerRadius(0).outerRadius(width * 0.3).startAngle(function(d) {
-        return scaleHours(d.numeric % 12);
-      }).endAngle(function(d) {
-        return scaleHours(d.numeric % 12);
-      });
-      return clockGroup.selectAll(".clockhand").data(data).enter().append("svg:path").attr("d", function(d) {
-        if (d.unit === "seconds") {
-          return secondArc(d);
-        } else if (d.unit === "minutes") {
-          return minuteArc(d);
-        } else if (d.unit === "hours") {
-          return hourArc(d);
-        }
-      }).attr("class", "clockhand").attr("stroke", "white").attr("stroke-width", function(d) {
-        if (d.unit === "seconds") {
-          return 2;
-        } else if (d.unit === "minutes") {
-          return 3;
-        } else if (d.unit === "hours") {
-          return 3;
-        }
-      }).attr("fill", "none");
-    };
+  render = function(data) {
+    var hourArc, minuteArc, secondArc;
+    clockGroup.selectAll(".clockhand").remove();
+    secondArc = d3.svg.arc().innerRadius(0).outerRadius(width * 0.42).startAngle(function(d) {
+      return scaleSecs(d.numeric);
+    }).endAngle(function(d) {
+      return scaleSecs(d.numeric);
+    });
+    minuteArc = d3.svg.arc().innerRadius(0).outerRadius(width * 0.42).startAngle(function(d) {
+      return scaleMins(d.numeric);
+    }).endAngle(function(d) {
+      return scaleMins(d.numeric);
+    });
+    hourArc = d3.svg.arc().innerRadius(0).outerRadius(width * 0.3).startAngle(function(d) {
+      return scaleHours(d.numeric % 12);
+    }).endAngle(function(d) {
+      return scaleHours(d.numeric % 12);
+    });
+    return clockGroup.selectAll(".clockhand").data(data).enter().append("svg:path").attr("d", function(d) {
+      if (d.unit === "seconds") {
+        return secondArc(d);
+      } else if (d.unit === "minutes") {
+        return minuteArc(d);
+      } else if (d.unit === "hours") {
+        return hourArc(d);
+      }
+    }).attr("class", "clockhand").attr("stroke", "white").attr("stroke-width", function(d) {
+      if (d.unit === "seconds") {
+        return 2;
+      } else if (d.unit === "minutes") {
+        return 3;
+      } else if (d.unit === "hours") {
+        return 3;
+      }
+    }).attr("fill", "none");
+  };
 
+  render(fields());
+  window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                                window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+  function step(timestamp) {
     render(fields());
-    setInterval(function() {
-      return render(fields());
-    }, 1000);
-
-  }).call(this);
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
   </script>
 
 </body>
