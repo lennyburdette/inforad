@@ -2,7 +2,8 @@ var socket = io.connect();
 
 var options = {
   'default': '/info/clock',
-  date: '/info/date'
+  date: '/info/date',
+  gradient: '/info/gradient'
 };
 
 if ('host' in window) {
@@ -68,6 +69,9 @@ if ('host' in window) {
           break;
           case 'movie':
             frame.src = '/info/movie?url=' + scene.url;
+          break;
+          case 'gradient':
+            frame.src = '/info/gradient?url=' + scene.url;
           break;
           default:
           break;

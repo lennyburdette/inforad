@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inforad</title>
+  <style type="text/css">
+  body {
+    margin: 0;
+  }
+  svg {
+    display: block;
+  }
+  </style>
+</head>
+<body>
+
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+  var duration = 5000;
+  var colors = '<%= query.url || 'F14224,F15A24,F16924,F18924,F19B24,F1B424' %>'.split(',');
+  var steps = colors.length / 2;
+  var step = 0;
+
+  var svg = d3.select('body')
+      .append('svg');
+
+  svg.attr('width', window.innerWidth)
+    .attr('height', window.innerHeight)
+    .append('rect')
+      .attr('width', window.innerWidth)
+      .attr('height', window.innerHeight)
+      .attr('fill', 'url(#gradient)');
+
+  var gradient = svg.append("svg:defs")
+    .append("svg:linearGradient")
+      .attr("id", "gradient")
+      .attr("x1", "0%")
+      .attr("y1", "0%")
+      .attr("x2", "0%")
+      .attr("y2", "100%")
+      .attr("spreadMethod", "pad");
+
+  var topStop = gradient.append("svg:stop")
+    .attr("offset", "0%")
+    .attr("stop-color", colors[0])
+    .attr("stop-opacity", 1);
+
+  var bottomStop = gradient.append("svg:stop")
+    .attr("offset", "100%")
+    .attr("stop-color", colors[1])
+    .attr("stop-opacity", 1);
+
+  function nextStep () {
+    step = step + 1 >= steps ? 0 : step + 1;
+    transition(topStop, colors[step * 2]);
+    transition(bottomStop, colors[step * 2 + 1]);
+  }
+  setInterval(nextStep, duration + 10);
+  nextStep();
+
+  function transition (stop, color) {
+    console.log(color);
+    stop.transition()
+      .duration(5000)
+      .attr('stop-color', '#' + color);
+  }
+  </script>
+</body>
+</html>
+
