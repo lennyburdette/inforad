@@ -53,7 +53,7 @@ module.exports = function(grunt) {
     cssmin: {
       dist: {
         files: {
-          'public/stylesheets/app.css': ['public/stylesheets/app.css']
+          'public/stylesheets/app.css': ['public/stylesheets/app.min.css']
         }
       }
     },
@@ -90,6 +90,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('default', ['compass', 'concat', 'develop', 'watch']);
-  grunt.registerTask('build', ['compass', 'cssmin', 'concat', 'uglify']);
+  grunt.registerTask('build', ['compass', 'concat', 'uglify']);
 
 };
