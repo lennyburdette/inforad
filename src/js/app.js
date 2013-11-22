@@ -60,7 +60,7 @@ if ('host' in window) {
     frame.classList.add('changing');
     setTimeout(function () {
 
-      if (scene.allowDefault && window.DEFAULT) {
+      if (scene && ('allowDefault' in scene) && scene.allowDefault && window.DEFAULT) {
         frame.src = DEFAULT;
       } else {
         switch (scene.type) {
