@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inforad</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
+  <script src="/javascript/modernizr.min.js"></script>
+</head>
+<body>
+  <ul class="example-orbit" data-orbit>
+    <% [
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/01-GoodMorning.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/02-GoodMorning.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/03-Quote.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/04-BreakTheRules.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/05-SquareRegister.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/06-Clock.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/07-Plinko.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/08-Squarelogo.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/09-ShowDontTell.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/10-Lunchtime.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/11-Stat.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/12-SquareMarket.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/13-Lunchtime.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/14-GiveItSoul.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/15-Maze.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/16-Clock.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/17-Animation.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/18-SquareLogo.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/19-StartSmall.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/20-Stat.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/21-SquareStand.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/22-3mReadersShipped.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/23-BreakTheRules.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/24-Quote.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/25-SquareLogo.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/26-Clock.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/27-Animation.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/28-SquareCash.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/29-ShowDontTell.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/30-Stat.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/31-Pacman.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/32-SquareLogo.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/33-Quote.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/34-Stat.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/35-GiveItSoul.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/36-GoodNight.png',
+      'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/37-Stars.png'
+    ].forEach(function (image) { %>
+    <li>
+      <img src="<%= image %>" />
+    </li>
+    <% }) %>
+  </ul>
+
+  <script src="/javascript/slideshow.min.js"></script>
+  <script type="text/javascript">
+  $(document).foundation({
+    orbit: {
+      animation: 'fade',
+      pause_on_hover: false,
+      navigation_arrows: false,
+      bullets: false,
+      slide_number: false
+    }
+  });
+  </script>
+</body>
+</html>

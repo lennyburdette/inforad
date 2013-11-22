@@ -38,5 +38,10 @@ var DEMO = function () {
     timeForForm: clockTime(i++),
     type: 'movie',
     url: 'https://s3-us-west-1.amazonaws.com/inforad-media/hackweek/HourglassLoop_Slow.mov'
+  },
+  {
+    timeForForm: clockTime(i++),
+    type: 'url',
+    url: '/info/demo'
   }];
 };
