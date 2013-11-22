@@ -12,13 +12,11 @@ body {
   position: absolute;
   width: 1080px;
   height: 1920px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-#time {
-  font-size: 124px;
-  kerning: auto;
-  text-rendering: optimizeLegibility;
+.chart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -400px 0 0 -400px;
 }

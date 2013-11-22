@@ -158,9 +158,8 @@ if ('host' in window) {
 
   scriptUI.on('addScene', function () {
     scriptUI.get('script').push({
-      hour: null,
-      minute: null,
-      type: null,
+      timeForForm: clockTime(10),
+      type: 'clock',
       url: null
     });
   });

@@ -3,7 +3,7 @@
 
 body {
   font-family: SQMarket, "Avenir", sans-serif;
-  color: rgba(32, 32, 32, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   background-color: #a9e4f7; // Old browsers
   @include filter-gradient(#a9e4f7, #0fb4e7, vertical); // IE6-9
   @include background-image(linear-gradient(top, #a9e4f7 0%,#0fb4e7 100%));
@@ -18,7 +18,12 @@ body {
 }
 
 #date {
-  font-size: 124px;
+  font-size: 128px;
   kerning: auto;
   text-rendering: optimizeLegibility;
+
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  margin: -64px auto 0;
 }
