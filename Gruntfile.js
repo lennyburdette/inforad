@@ -21,18 +21,32 @@ module.exports = function(grunt) {
       }
     },
     concat: {
-      dist: {
+      app: {
         src: [
           'src/js/vendor/ractive/build/Ractive.js',
+          'src/js/demo_script.js',
           'src/js/app.js'
         ],
         dest: 'public/javascript/app.min.js'
+      },
+      slideshow: {
+        src: [
+          'src/js/external/jquery.js',
+          'src/js/external/foundation.min.js',
+          'src/js/slideshow.js'
+        ],
+        dest: 'public/javascript/slideshow.min.js'
+      },
+      modernizr: {
+        src: ['src/js/modernizr.js'],
+        dest: 'public/javascript/modernizr.min.js'
       }
     },
     uglify: {
       dist: {
         files: {
-          'public/javascript/app.min.js': ['public/javascript/app.min.js']
+          'public/javascript/app.min.js': ['public/javascript/app.min.js'],
+          'public/javascript/slideshow.min.js': ['public/javascript/slideshow.min.js']
         }
       }
     },

@@ -2,64 +2,94 @@
 <html>
 <head>
   <title>Inforad Controller</title>
-  <style type="text/css">
-    body {
-      font-family: sans-serif;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
 </head>
 <body>
-  <h1>Update an inforad</h1>
-  <div id="clients"></div>
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="/control">Inforad Control</a></h1>
+      </li>
+    </ul>
+  </nav>
 
-  <h1>Script All Inforads</h1>
-  <div id="script"></div>
+  <div class="row">
+    <section class="small-12 columns">
+      <h1>Update an inforad</h1>
+      <div id="clients"></div>
+    </section>
+
+    <section class="small-12 columns">
+      <h1>Script All Inforads</h1>
+      <div id="script"></div>
+    </section>
+  </div>
+
+
 
   <script type="text/x-ractive" id="tmplClients">
-  <ul>
+  <div>
   {{#clients}}
-    <li>
-      {{name}}
-      <select value="{{screen}}" on-change="changeClient">
+    <div class="row">
+      <h4 class="small-4 columns">{{name}}</h4>
+      <select class="small-8 columns" value="{{screen}}" on-change="changeClient">
         {{#options:key}}
           <option value="{{key}}">{{key}}</option>
         {{/options}}
       </select>
-    </li>
+    </div>
   {{/clients}}
-  </ul>
+  </div>
 
-  <p>Change all:</p>
-  <select value="{{currentScreen}}">
-    {{#options:key}}
-      <option value="{{key}}">{{key}}</option>
-    {{/options}}
-  </select>
-  <button on-click="changeAllClients">Set</button>
+  <div class="row">
+    <p class="columns">Change all:</p>
+  </div>
+  <div class="row">
+    <div class="small-10 columns">
+      <select value="{{currentScreen}}">
+        {{#options:key}}
+          <option value="{{key}}">{{key}}</option>
+        {{/options}}
+      </select>
+    </div>
+    <button on-click="changeAllClients" class="small-2 columns tiny alert">Set</button>
+  </div>
   </script>
+
+
 
   <script type="text/x-ractive" id="tmplScript">
     {{#script:i}}
-    <div>
-      <input type="text" size="2" value="{{hour}}" placeholder="18">:
-      <input type="text" size="2" value="{{minute}}" placeholder="30">
-      <select value="{{type}}">
+    <div class="row">
+      <div class="small-3 columns">
+        <input type="time" value="{{timeForForm}}">
+      </div>
+      <select class="small-3 columns" value="{{type}}">
         <option value="url">URL</option>
         <option value="image">Image</option>
+        <option value="slideshow">Slideshow</option>
         <option value="movie">Movie</option>
         <option value="gradient">Gradient</option>
+        <option value="clock">Clock</option>
       </select>
-      <input type="text" size="32" value="{{url}}" placholder="URL to site/media">
-      <label>
-        <input type="checkbox" checked="{{allowDefault}}">
-        Allow Default
-      </label>
-      <button on-click="removeScene:{{i}}">Remove</button>
+      <div class="small-3 columns">
+        <label class="inline">
+          <input type="checkbox" checked="{{allowDefault}}">
+          Allow Default
+        </label>
+      </div>
+      <button class="small-2 columns button secondary tiny" on-click="removeScene:{{i}}">Remove</button>
     </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <input type="text" size="32" value="{{url}}" placeholder="URL to site/media or color list">
+      </div>
+    </div>
+    <hr>
     {{/script}}
 
-    <p><button on-click="addScene">Add a Scene</button></p>
-    <p><button on-click="sendScript">Send to All</button></p>
+    <p><button on-click="addScene" class="secondary">Add a Scene</button></p>
+    <p><button on-click="sendScript" class="alert">Send to All</button></p>
   </script>
 
   <script type="text/javascript">

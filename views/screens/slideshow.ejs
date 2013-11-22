@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inforad</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
+  <script src="/javascript/modernizr.min.js"></script>
+</head>
+<body>
+  <ul class="example-orbit" data-orbit>
+    <% query.url.split(',').forEach(function (image) { %>
+    <li>
+      <img src="<%= image %>" />
+    </li>
+    <% }) %>
+  </ul>
+
+  <script src="/javascript/slideshow.min.js"></script>
+  <script type="text/javascript">
+  $(document).foundation({
+    orbit: {
+      animation: 'fade',
+      timer_speed: 10000,
+      animation_speed: 100,
+      navigation_arrows: false,
+      bullets: false,
+      next_on_click: false
+    }
+  });
+  </script>
+</body>
+</html>

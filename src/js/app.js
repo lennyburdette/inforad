@@ -11,6 +11,7 @@ if ('host' in window) {
   var frame = document.getElementById('frame');
 
   socket.on('change', function (data) {
+    clearInterval(timer);
     change({
       type: 'url',
       url: options[data.screen]
@@ -18,6 +19,7 @@ if ('host' in window) {
   });
 
   socket.on('scriptChange', function (data) {
+    clearInterval(timer);
     startScript(data.script);
   });
 
@@ -44,6 +46,7 @@ if ('host' in window) {
 
   var timer;
   function startTimer () {
+    clearInterval(timer);
     timer = setInterval(function () {
       var newIndex = findCurrentScene();
       if (newIndex !== currentSceneIndex) {
@@ -72,6 +75,12 @@ if ('host' in window) {
           break;
           case 'gradient':
             frame.src = '/info/gradient?url=' + scene.url;
+          break;
+          case 'slideshow':
+            frame.src = '/info/slideshow?url=' + scene.url;
+          break;
+          case 'clock':
+            frame.src = '/info/clock';
           break;
           default:
           break;
@@ -139,31 +148,7 @@ if ('host' in window) {
     el: document.getElementById('script'),
     template: document.getElementById('tmplScript').innerHTML,
     data: {
-      script: [{
-        hour: hour,
-        minute: minute,
-        type: 'image',
-        url: '/media/SlideTests_01-01.jpg'
-      },
-      {
-        hour: hour,
-        minute: minute + 1,
-        type: 'image',
-        url: '/media/SlideTests_01-02.jpg',
-        allowDefault: true
-      },
-      {
-        hour: hour,
-        minute: minute + 2,
-        type: 'movie',
-        url: '/media/HourglassLoop_Slow.mov'
-      },
-      {
-        hour: hour,
-        minute: minute + 3,
-        type: 'movie',
-        url: '/media/10minutes.mov'
-      }]
+      script: DEMO()
     }
   });
 
@@ -183,7 +168,8 @@ if ('host' in window) {
   scriptUI.on('sendScript', function (event) {
     var script = scriptUI.get('script');
     script.forEach(function (scene) {
-      scene.time = scene.hour * 60 * 60 + scene.minute * 60;
+      var parts = scene.timeForForm.split(':');
+      scene.time = parseInt(parts[0], 10) * 60 * 60 + parseInt(parts[1], 10) * 60;
     });
 
     socket.emit('sendScript', { script: script });
@@ -209,6 +195,16 @@ if ('host' in window) {
     });
   });
 
+}
+
+function clockTime (offsetMinutes) {
+  offsetMinutes = offsetMinutes || 0;
+  var date = new Date();
+  return [date.getHours(), zeroPad((date.getMinutes() + offsetMinutes) % 60)].join(':');
+}
+
+function zeroPad (num) {
+  return num < 10 ? '0' + num : num;
 }
 
 function todaySeconds () {
