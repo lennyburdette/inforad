@@ -55,19 +55,25 @@ if ('host' in window) {
   function change (scene) {
     frame.classList.add('changing');
     setTimeout(function () {
-      switch (scene.type) {
-        case 'url':
-          frame.src = scene.url;
-        break;
-        case 'image':
-          frame.src = '/info/image?url=' + scene.file;
-        break;
-        case 'movie':
-          frame.src = '/info/movie?url=' + scene.file;
-        break;
-        default:
-        break;
+
+      if (scene.allowDefault && window.DEFAULT) {
+        frame.src = DEFAULT;
+      } else {
+        switch (scene.type) {
+          case 'url':
+            frame.src = scene.url;
+          break;
+          case 'image':
+            frame.src = '/info/image?url=' + scene.url;
+          break;
+          case 'movie':
+            frame.src = '/info/movie?url=' + scene.url;
+          break;
+          default:
+          break;
+        }
       }
+
       setTimeout(function () {
         frame.classList.remove('changing');
       }, 300);
@@ -122,8 +128,61 @@ if ('host' in window) {
     socket.emit('allClientChange', { screen: clientsUI.get('currentScreen') });
   });
 
-  clientsUI.on('sendScript', function () {
-    socket.emit('sendScript');
+  var date = new Date();
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var scriptUI = new Ractive({
+    el: document.getElementById('script'),
+    template: document.getElementById('tmplScript').innerHTML,
+    data: {
+      script: [{
+        hour: hour,
+        minute: minute,
+        type: 'image',
+        url: '/media/SlideTests_01-01.jpg'
+      },
+      {
+        hour: hour,
+        minute: minute + 1,
+        type: 'image',
+        url: '/media/SlideTests_01-02.jpg',
+        allowDefault: true
+      },
+      {
+        hour: hour,
+        minute: minute + 2,
+        type: 'movie',
+        url: '/media/HourglassLoop_Slow.mov'
+      },
+      {
+        hour: hour,
+        minute: minute + 3,
+        type: 'movie',
+        url: '/media/10minutes.mov'
+      }]
+    }
+  });
+
+  scriptUI.on('removeScene', function (event, index) {
+    scriptUI.get('script').splice(index, 1);
+  });
+
+  scriptUI.on('addScene', function () {
+    scriptUI.get('script').push({
+      hour: null,
+      minute: null,
+      type: null,
+      url: null
+    });
+  });
+
+  scriptUI.on('sendScript', function (event) {
+    var script = scriptUI.get('script');
+    script.forEach(function (scene) {
+      scene.time = scene.hour * 60 * 60 + scene.minute * 60;
+    });
+
+    socket.emit('sendScript', { script: script });
   });
 
   socket.on('clientDisconnected', function (clientName) {
@@ -150,5 +209,5 @@ if ('host' in window) {
 
 function todaySeconds () {
   var date = new Date();
-  return (date.getUTCHours() * 60 * 60) + (date.getUTCMinutes() * 60) + date.getUTCSeconds();
+  return (date.getHours() * 60 * 60) + (date.getMinutes() * 60) + date.getSeconds();
 }

@@ -9,7 +9,11 @@
   </style>
 </head>
 <body>
+  <h1>Update an inforad</h1>
   <div id="clients"></div>
+
+  <h1>Script All Inforads</h1>
+  <div id="script"></div>
 
   <script type="text/x-ractive" id="tmplClients">
   <ul>
@@ -32,8 +36,29 @@
     {{/options}}
   </select>
   <button on-click="changeAllClients">Set</button>
+  </script>
 
-  <p><button on-click="sendScript">Send Script</button></p>
+  <script type="text/x-ractive" id="tmplScript">
+    {{#script:i}}
+    <div>
+      <input type="text" size="2" value="{{hour}}" placeholder="18">:
+      <input type="text" size="2" value="{{minute}}" placeholder="30">
+      <select value="{{type}}">
+        <option value="url">URL</option>
+        <option value="image">Image</option>
+        <option value="movie">Movie</option>
+      </select>
+      <input type="text" size="32" value="{{url}}" placholder="URL to site/media">
+      <label>
+        <input type="checkbox" checked="{{allowDefault}}">
+        Allow Default
+      </label>
+      <button on-click="removeScene:{{i}}">Remove</button>
+    </div>
+    {{/script}}
+
+    <p><button on-click="addScene">Add a Scene</button></p>
+    <p><button on-click="sendScript">Send to All</button></p>
   </script>
 
   <script type="text/javascript">

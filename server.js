@@ -10,7 +10,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
-  res.render('index', { host: req.query.host });
+  res.render('index', { host: req.query.host, defaultScene: req.query['default'] });
 });
 
 app.get('/info/:screen', function (req, res) {
@@ -22,6 +22,7 @@ app.get('/control', function (req, res) {
 });
 
 var clients = {};
+var lastScript;
 io.sockets.on('connection', function (socket) {
   var clientHostname;
 
@@ -29,6 +30,11 @@ io.sockets.on('connection', function (socket) {
     clientHostname = data.host;
     clients[data.host] = socket;
     socket.set('host', data.host);
+
+    if (lastScript) {
+      socket.emit('scriptChange', lastScript);
+    }
+
     socket.broadcast.emit('clientConnected', data.host);
 
     socket.on('disconnect', function () {
@@ -47,25 +53,8 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('sendScript', function (data) {
-      socket.broadcast.emit('scriptChange', {
-        script: [{
-          time: todaySeconds(),
-          type: 'image',
-          file: '/media/SlideTests_01-01.jpg'
-        }, {
-          time: todaySeconds() + 5,
-          type: 'image',
-          file: '/media/SlideTests_01-02.jpg'
-        }, {
-          time: todaySeconds() + 10,
-          type: 'movie',
-          file: '/media/HourglassLoop_Slow.mov'
-        }, {
-          time: todaySeconds() + 15,
-          type: 'movie',
-          file: '/media/10minutes.mov'
-        }]
-      });
+      lastScript = data;
+      socket.broadcast.emit('scriptChange', data);
     });
   });
 

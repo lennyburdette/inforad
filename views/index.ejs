@@ -25,6 +25,7 @@
 
   <script type="text/javascript">
   <% if (host) { %>var host = '<%= host %>';<% } %>
+  <% if (host) { %>var DEFAULT = '<%= defaultScene %>'<% } %>
   </script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/javascript/app.min.js"></script>
